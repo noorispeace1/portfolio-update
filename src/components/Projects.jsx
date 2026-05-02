@@ -6,18 +6,18 @@ import GlassCard from './GlassCard';
 import SectionHeader from './SectionHeader';
 
 const projects = [
-  // {
-  //   title: 'Pixgen',
-  //   desc: 'A secure authentication system built with Next.js using Google OAuth. Includes protected routes, session handling, and user profile management.',
-  //   tags: ['Next.js', 'NextAuth', 'Google OAuth', 'Auth'],
-  //   img: 'https://i.ibb.co.com/LzmBFDTX/Screenshot-2026-05-01-012526.png',
-  //   link: 'https://pixgen09.vercel.app',
-  //  links: 'https://github.com/sohan24-dev/Pixgen02',
-  //   large: false
-  // },
   {
-    title: 'FoodNest – Restaurant & Food Ordering UI',
-    desc: 'A modern restaurant website featuring a clean UI to explore menus, view dishes, and enhance the dining experience with a smooth and user-friendly design',
+    title: 'Aurelia-Summer',
+    desc: 'A secure authentication system built with Next.js using Google OAuth. Includes protected routes, session handling, and user profile management.',
+    tags: ['Next.js', 'NextAuth', 'Google OAuth', 'Auth'],
+    img: 'https://i.ibb.co.com/bMHg0qLC/Screenshot-52.png',
+    link: 'https://aurelia-summer.vercel.app/',
+   links: 'https://github.com/noorispeace1/Aurelia-Summer',
+    large: false
+  },
+  {
+    title: 'Keen-Keeper – Connect your Friend UI',
+    desc: 'A modern Keen-Keeper website featuring a clean UI to explore menus, view dishes, and enhance the dining experience with a smooth and user-friendly design',
     tags: ['React', 'Next.js', 'Tailwind'],
     img: 'https://i.ibb.co.com/V8ksBp5/Screenshot-51.png',
     link: 'https://keen-keeper-software.vercel.app',
@@ -25,7 +25,7 @@ const projects = [
     large: false
   },
   {
-    title: 'Contact Hub UI System',
+    title: 'Standard News – A News Website',
     desc: 'A modern responsive contact UI built with React featuring form validation, real-time input feedback, loading states, and a clean design for smooth and easy communication.',
     tags: ['React', 'UI Design','Next.Js','MOngoDB',"Better Auth"],
     img: 'https://i.ibb.co.com/8DtvDxfT/Screenshot-50.png',
