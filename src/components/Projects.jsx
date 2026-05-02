@@ -6,15 +6,15 @@ import GlassCard from './GlassCard';
 import SectionHeader from './SectionHeader';
 
 const projects = [
-  {
-    title: 'Pixgen',
-    desc: 'A secure authentication system built with Next.js using Google OAuth. Includes protected routes, session handling, and user profile management.',
-    tags: ['Next.js', 'NextAuth', 'Google OAuth', 'Auth'],
-    img: 'https://i.ibb.co.com/LzmBFDTX/Screenshot-2026-05-01-012526.png',
-    link: 'https://pixgen09.vercel.app',
-   links: 'https://github.com/sohan24-dev/Pixgen02',
-    large: false
-  },
+  // {
+  //   title: 'Pixgen',
+  //   desc: 'A secure authentication system built with Next.js using Google OAuth. Includes protected routes, session handling, and user profile management.',
+  //   tags: ['Next.js', 'NextAuth', 'Google OAuth', 'Auth'],
+  //   img: 'https://i.ibb.co.com/LzmBFDTX/Screenshot-2026-05-01-012526.png',
+  //   link: 'https://pixgen09.vercel.app',
+  //  links: 'https://github.com/sohan24-dev/Pixgen02',
+  //   large: false
+  // },
   {
     title: 'FoodNest – Restaurant & Food Ordering UI',
     desc: 'A modern restaurant website featuring a clean UI to explore menus, view dishes, and enhance the dining experience with a smooth and user-friendly design',
