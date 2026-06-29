@@ -31,8 +31,8 @@ const About = () => {
           </div>
 
           <div className="space-y-4">
-            <h1 className="font-display text-4xl sm:text-5xl font-bold text-on-surface leading-tight tracking-tight">
-              Noor
+            <h1 className="font-display text-3xl sm:text-4xl font-bold text-on-surface leading-tight tracking-tight">
+              Ahosanul Haque Noor
             </h1>
             <div className="flex items-center gap-3">
               <div className="w-10 h-[2px] bg-primary rounded-full"></div>
@@ -99,15 +99,15 @@ const About = () => {
 
           <div className="space-y-6 text-on-surface-variant text-lg leading-relaxed">
             <p>
-              I am a Junior Full-Stack Developer with a strong passion for building modern, responsive, and user-friendly web applications. My journey started with curiosity about how websites work, which led me to learn HTML and CSS, and gradually move into JavaScript, React, and Next.js. I am now expanding my skills toward full-stack development.
+              Hello! I&apos;m <strong>Ahosanul Haque Noor</strong>, a passionate <strong>Full-Stack Developer</strong> based in Bangladesh. I specialize in crafting beautifully designed, highly interactive, and scalable web applications. My journey in tech is driven by an insatiable curiosity to bridge the gap between stunning aesthetic design and robust backend architecture.
             </p>
 
             <p>
-              I enjoy creating clean UI designs and solving real-world problems through code. I am especially interested in frontend development, where I can combine logic and creativity to build smooth and interactive user experiences.
+              I thrive in the modern web ecosystem, deeply utilizing technologies like <strong>React, Next.js, Prisma, and PostgreSQL</strong>. My core philosophy is that exceptional software should not only work flawlessly under the hood but should also provide an unforgettable, smooth user experience through thoughtful UI/UX and dynamic micro-animations.
             </p>
 
             <p>
-              Outside of programming, I enjoy exploring new technologies, learning about UI/UX design, and improving my problem-solving skills. I also like spending time on self-development and staying updated with modern tech trends.
+              When I&apos;m not writing code or debugging complex problems, I&apos;m constantly exploring emerging technologies, studying advanced system designs, and finding new ways to optimize performance. I&apos;m always looking forward to collaborating on innovative projects that push the boundaries of what the web can do.
             </p>
 
           </div>
