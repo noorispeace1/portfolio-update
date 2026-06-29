@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import Stats from '@/components/Stats';
 import About from '@/components/About';
 import Qualification from '@/components/Qualification';
 import Projects from '@/components/Projects';
@@ -27,7 +26,6 @@ export default function Home() {
 
       <main className="max-w-7xl mx-auto pt-20 px-4 md:px-8">
         <Hero />
-        <Stats />
         <About></About>
         <Projects />
         <Skills />
