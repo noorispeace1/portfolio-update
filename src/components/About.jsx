@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 import GlassCard from './GlassCard';
-import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaYoutube, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const About = () => {
   return (
@@ -48,11 +48,11 @@ const About = () => {
 
             <div className="flex gap-4 pt-4">
               {[
-                // {
-                //   icon: <FaFacebook />,
-                //   href: "",
-                //   key: "facebook",
-                // },
+                {
+                  icon: <FaYoutube />,
+                  href: "https://www.youtube.com/@AhosanulHaqueNoor-j5i",
+                  key: "youtube",
+                },
                 {
                   icon: <FaGithub />,
                   href: "https://github.com/noorispeace1",
@@ -61,6 +61,7 @@ const About = () => {
                 {
                   icon: <FaLinkedin />,
                   href: "https://www.linkedin.com/in/ahosanul-haque-noor-b4a02b2a5",
+                  key: "linkedin",
                 },
               ].map((item) => (
                 <Link

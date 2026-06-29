@@ -6,7 +6,7 @@ import Stats from '@/components/Stats';
 import About from '@/components/About';
 import Qualification from '@/components/Qualification';
 import Projects from '@/components/Projects';
-import Services from '@/components/Services';
+import Skills from '@/components/Skills';
 import Contact from '@/components/Contact';
 import DecorativeSection from '@/components/DecorativeSection';
 import Footer from '@/components/Footer';
@@ -29,10 +29,10 @@ export default function Home() {
         <Hero />
         <Stats />
         <About></About>
+        <Projects />
+        <Skills />
         <Experience></Experience>
         <Qualification />
-        <Projects />
-        <Services />
         <Contact />
         <DecorativeSection />
       </main>
