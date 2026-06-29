@@ -65,20 +65,17 @@ export default function ResumePage() {
               transform: `scale(${zoom})`, 
             }}
           >
-            {/* Aspect ratio container for A4 (1:1.414). Hidden overflow to clip scrollbar. */}
+            {/* Responsive Container for PDF */}
             <div 
               ref={containerRef}
-              className="w-full max-w-[850px] aspect-[1/1.414] bg-white shadow-[0_0_50px_rgba(0,0,0,0.5)] relative overflow-hidden rounded-xl"
+              className="w-full max-w-[850px] h-[75vh] sm:h-[80vh] md:h-auto md:aspect-[1/1.414] bg-[#1a1c20] shadow-[0_0_50px_rgba(0,0,0,0.5)] relative overflow-hidden rounded-xl border border-white/10"
+              style={{ WebkitOverflowScrolling: 'touch' }}
             >
               <iframe 
-                src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=Fit" 
-                className="absolute top-0 left-0 h-full border-none pointer-events-none"
-                style={{ width: 'calc(100% + 18px)' }}
-                scrolling="no"
+                src="/resume.pdf#view=FitH" 
+                className="w-full h-full border-none"
                 title="Resume Preview"
               />
-              {/* Invisible overlay to prevent iframe scrolling and allow CSS zoom to work smoothly */}
-              <div className="absolute inset-0 z-10"></div>
             </div>
           </div>
         </div>
