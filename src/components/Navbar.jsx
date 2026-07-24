@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import ThemeToggle from './ThemeToggle';
 
@@ -18,17 +19,29 @@ const NLogo = () => (
 const navLinks = [
   { href: '#hero', label: 'Home', id: 'hero', icon: 'home' },
   { href: '#about', label: 'About', id: 'about', icon: 'person' },
-  { href: '#projects', label: 'Projects', id: 'projects', icon: 'layers' },
+  { href: '/projects', label: 'Projects', id: 'projects', icon: 'layers' },
   { href: '#skills', label: 'Skills', id: 'skills', icon: 'code' },
-  { href: '#qualification', label: 'Qualification', id: 'qualification', icon: 'school' },
+  { href: '/qualification', label: 'Qualification', id: 'qualification', icon: 'school' },
   { href: '#contact', label: 'Contact', id: 'contact', icon: 'mail' },
 ];
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = useState('hero');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef(null);
+
+  // Set active section based on route
+  useEffect(() => {
+    if (pathname === '/projects') {
+      setActiveSection('projects');
+    } else if (pathname === '/qualification') {
+      setActiveSection('qualification');
+    } else if (pathname === '/') {
+      setActiveSection('hero');
+    }
+  }, [pathname]);
 
   // GSAP Initial Animation
   useEffect(() => {
@@ -42,17 +55,19 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      if (window.scrollY < 100) {
+      if (pathname === '/' && window.scrollY < 100) {
         setActiveSection('hero');
       }
     };
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   // Scroll Spy with Intersection Observer
   useEffect(() => {
+    if (pathname !== '/') return; // Only run scroll spy on the home page
+
     const observerOptions = {
       root: null,
       rootMargin: '-40% 0px -40% 0px',
@@ -75,7 +90,7 @@ const Navbar = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return (
     <nav

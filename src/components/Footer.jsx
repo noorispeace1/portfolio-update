@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 
 const Footer = () => {
   const marqueeText = "LET'S BUILD SOMETHING GREAT • FULL STACK DEVELOPER • REACT & NEXT.JS EXPERT • ALWAYS OPEN FOR A CHAT • LET'S CREATE TOGETHER • ";
@@ -51,6 +52,9 @@ const Footer = () => {
         <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 mt-16 text-sm font-semibold tracking-wide text-on-surface-variant/80">
           <Link href="https://github.com/noorispeace1" target="_blank" className="flex items-center gap-2 hover:text-white transition-colors">
             <FaGithub size={16} /> GitHub
+          </Link>
+          <Link href="https://leetcode.com/u/Noor_leetcode/" target="_blank" className="flex items-center gap-2 hover:text-[#FFA116] transition-colors">
+            <SiLeetcode size={16} /> LeetCode
           </Link>
           <Link href="https://www.linkedin.com/in/ahosanul-haque-noor-b4a02b2a5" target="_blank" className="flex items-center gap-2 hover:text-white transition-colors">
             <FaLinkedin size={16} /> LinkedIn

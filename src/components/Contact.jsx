@@ -20,10 +20,7 @@ const Contact = () => {
   return (
     <section id="contact" className="max-w-7xl mx-auto px-4 sm:px-8 pt-32 pb-20">
       <div className="flex flex-col items-center mb-16">
-        <div className="px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] sm:text-xs font-bold tracking-widest uppercase text-primary mb-4 flex items-center gap-2">
-           <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-           GET IN TOUCH
-        </div>
+
         <h2 className="text-4xl md:text-5xl font-black font-display text-transparent bg-clip-text bg-gradient-to-r from-white to-[#d4bfff]">
           Let&apos;s Connect
         </h2>
@@ -45,35 +42,35 @@ const Contact = () => {
 
           <div className="space-y-4">
             {/* Email */}
-            <div className="flex items-center gap-5 p-5 rounded-2xl bg-[#120822]/80 border border-on-surface/10 hover:border-primary/30 transition-all group">
+            <div className="flex items-center gap-5 p-5 rounded-2xl bg-[#120822]/80 border border-white/10 hover:border-primary/30 transition-all group shadow-sm">
               <div className="w-10 h-10 rounded-xl bg-[#1a0b33] border border-white/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-[18px]">mail</span>
               </div>
               <div>
-                <p className="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Email</p>
-                <p className="text-xs sm:text-sm font-semibold text-on-surface tracking-wide">ahosanulhaquenoor@gmail.com</p>
+                <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold mb-1">Email</p>
+                <p className="text-xs sm:text-sm font-semibold text-white tracking-wide">ahosanulhaquenoor@gmail.com</p>
               </div>
             </div>
 
             {/* Phone */}
-            <div className="flex items-center gap-5 p-5 rounded-2xl bg-[#120822]/80 border border-on-surface/10 hover:border-primary/30 transition-all group">
+            <div className="flex items-center gap-5 p-5 rounded-2xl bg-[#120822]/80 border border-white/10 hover:border-primary/30 transition-all group shadow-sm">
               <div className="w-10 h-10 rounded-xl bg-[#1a0b33] border border-white/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-[18px]">call</span>
               </div>
               <div>
-                <p className="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Phone</p>
-                <p className="text-xs sm:text-sm font-semibold text-on-surface tracking-wide">+8801851600159</p>
+                <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold mb-1">Phone</p>
+                <p className="text-xs sm:text-sm font-semibold text-white tracking-wide">+8801851600159</p>
               </div>
             </div>
 
             {/* Location */}
-            <div className="flex items-center gap-5 p-5 rounded-2xl bg-[#120822]/80 border border-on-surface/10 hover:border-primary/30 transition-all group">
+            <div className="flex items-center gap-5 p-5 rounded-2xl bg-[#120822]/80 border border-white/10 hover:border-primary/30 transition-all group shadow-sm">
               <div className="w-10 h-10 rounded-xl bg-[#1a0b33] border border-white/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-[18px]">location_on</span>
               </div>
               <div>
-                <p className="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Location</p>
-                <p className="text-xs sm:text-sm font-semibold text-on-surface tracking-wide">Khulna, Bangladesh</p>
+                <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold mb-1">Location</p>
+                <p className="text-xs sm:text-sm font-semibold text-white tracking-wide">Khulna, Bangladesh</p>
               </div>
             </div>
           </div>
@@ -85,13 +82,13 @@ const Contact = () => {
                 { icon: <FaGithub />, name: 'GitHub', link: 'https://github.com/noorispeace1' },
                 { icon: <FaLinkedin />, name: 'LinkedIn', link: 'https://www.linkedin.com/in/ahosanul-haque-noor-b4a02b2a5' },
                 { icon: <FaYoutube />, name: 'YouTube', link: 'https://www.youtube.com/@AhosanulHaqueNoor-j5i' },
-                { icon: <FaCode />, name: 'LeetCode', link: '#' },
+                { icon: <FaCode />, name: 'LeetCode', link: 'https://leetcode.com/u/Noor_leetcode/' },
               ].map((social) => (
                 <Link 
                   key={social.name} 
                   href={social.link} 
                   target="_blank"
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#120822] border border-on-surface/10 text-on-surface-variant hover:text-white hover:border-primary/50 transition-all text-xs font-semibold tracking-wide"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#120822] border border-white/10 text-white/70 hover:text-white hover:border-primary/50 transition-all text-xs font-semibold tracking-wide"
                 >
                   {social.icon}
                   {social.name}
@@ -103,8 +100,8 @@ const Contact = () => {
 
         {/* Right Side */}
         <div>
-          <div className="bg-[#120822] rounded-[1.5rem] p-6 sm:p-8 border border-white/5 shadow-xl h-full flex flex-col">
-            <h3 className="text-lg font-bold text-on-surface mb-8 flex items-center gap-3 tracking-wide">
+          <div className="bg-[#120822] rounded-[1.5rem] p-6 sm:p-8 border border-white/10 shadow-xl h-full flex flex-col">
+            <h3 className="text-lg font-bold text-white mb-8 flex items-center gap-3 tracking-wide">
               <span className="w-8 h-8 rounded-lg bg-[#1a0b33] border border-white/5 flex items-center justify-center text-primary">
                 <span className="material-symbols-outlined text-[16px]">mail</span>
               </span>
@@ -116,7 +113,7 @@ const Contact = () => {
                 <div>
                   <input
                     ref={nameRef}
-                    className="w-full bg-[#1a0b33] border border-white/5 rounded-xl px-5 py-3.5 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none"
+                    className="w-full bg-[#1a0b33] border border-white/5 rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-white/40 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none"
                     placeholder="Your Name"
                     type="text"
                   />
@@ -124,7 +121,7 @@ const Contact = () => {
                 <div>
                   <input
                     ref={emailRef}
-                    className="w-full bg-[#1a0b33] border border-white/5 rounded-xl px-5 py-3.5 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none"
+                    className="w-full bg-[#1a0b33] border border-white/5 rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-white/40 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none"
                     placeholder="Your Email"
                     type="email"
                   />
@@ -134,7 +131,7 @@ const Contact = () => {
               <div>
                 <input
                   ref={subjectRef}
-                  className="w-full bg-[#1a0b33] border border-white/5 rounded-xl px-5 py-3.5 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none"
+                  className="w-full bg-[#1a0b33] border border-white/5 rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-white/40 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none"
                   placeholder="Subject"
                   type="text"
                 />
@@ -143,7 +140,7 @@ const Contact = () => {
               <div className="flex-1">
                 <textarea
                   ref={messageRef}
-                  className="w-full h-full min-h-[160px] bg-[#1a0b33] border border-white/5 rounded-xl px-5 py-4 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none resize-none"
+                  className="w-full h-full min-h-[160px] bg-[#1a0b33] border border-white/5 rounded-xl px-5 py-4 text-sm text-white placeholder:text-white/40 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none resize-none"
                   placeholder="Your Message"
                 ></textarea>
               </div>

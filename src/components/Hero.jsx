@@ -82,7 +82,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden pt-20">
+    <section id="hero" className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden pt-20 pb-24 md:pb-0">
       
       {/* Background elements */}
       <div 
@@ -130,7 +130,7 @@ const Hero = () => {
         </div>
 
         {/* Right Image */}
-        <div className="relative flex justify-center lg:justify-end items-center z-10 pr-0 lg:pr-8 mt-10 md:mt-0">
+        <div className="relative flex justify-center lg:justify-end items-center z-10 pr-0 lg:pr-8 mt-10 mb-16 md:mb-0 md:mt-0">
            
            {/* Concentric rings */}
            <div className="absolute w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] rounded-full border border-[#4d1f85]/40 -z-10"></div>

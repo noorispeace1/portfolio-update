@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
@@ -9,13 +9,36 @@ import { FaGithub, FaLinkedin, FaYoutube } from 'react-icons/fa';
 
 const projects = [
   {
+    title: 'Aura Artifact',
+    desc: 'A powerful full-stack web application designed with a sleek UI and robust backend architecture. Features seamless data integration and responsive design for an optimal user experience.',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB'],
+    img: '/images/aura-artifact.png',
+    link: 'https://aura-artifact.vercel.app/',
+    github: 'https://github.com/noorispeace1/aura-artifact',
+    serverGithub: 'https://github.com/noorispeace1/aura-artifact-server',
+    large: false,
+    category: 'fullstack'
+  },
+  {
+    title: 'Scholar Stack',
+    desc: 'An expert-led course platform empowering students to master new skills. Features a comprehensive learning management system with responsive UI and secure backend.',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB'],
+    img: '/images/scholar stack.png',
+    link: 'https://scholar-stack-xi.vercel.app/',
+    github: 'https://github.com/noorispeace1/scholar-stack',
+    serverGithub: 'https://github.com/noorispeace1/scholar-stack-server',
+    large: false,
+    category: 'fullstack'
+  },
+  {
     title: 'Talentist Velo',
     desc: 'A dynamic talent acquisition platform and job board engineered with Next.js, featuring secure user authentication, responsive component-driven UI, and streamlined data flows connecting job seekers with recruiters.',
     tags: ['Next.js', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
     img: '/images/talentist_mockup.png',
     link: 'https://talentist-velo.vercel.app/',
     github: 'https://github.com/noorispeace1/talentist-velo',
-    large: false
+    large: false,
+    category: 'frontend'
   },
   {
     title: 'Novamed NSJS',
@@ -24,7 +47,8 @@ const projects = [
     img: '/images/novamed_mockup.png',
     link: 'https://novamed-nsjs.vercel.app/',
     github: 'https://github.com/noorispeace1/novamed-nsjs',
-    large: false
+    large: false,
+    category: 'backend'
   },
   {
     title: 'Rent Desh',
@@ -33,12 +57,56 @@ const projects = [
     img: '/images/rentdesh_mockup.png',
     link: 'https://rent-desh.vercel.app/',
     github: 'https://github.com/noorispeace1/rent-desh-',
-    large: true
+    large: true,
+    category: 'fullstack'
+  },
+  {
+    title: 'WonderLust',
+    desc: 'A modern agency platform with a visually stunning interface and dynamic features. Built to showcase services, manage client interactions, and deliver a premium digital experience.',
+    tags: ['React', 'Node.js', 'Tailwind CSS', 'MongoDB'],
+    img: '/images/wonderlust.png',
+    link: '#',
+    github: 'https://github.com/noorispeace1/WonderLust',
+    serverGithub: 'https://github.com/noorispeace1/wonderlustagency',
+    large: false,
+    category: 'fullstack'
+  },
+  {
+    title: 'Standard News',
+    desc: 'A modern frontend news portal presenting the latest stories and articles in a clean layout. Optimized for readability and quick access to various news categories.',
+    tags: ['Next.js', 'React', 'Tailwind CSS'],
+    img: '/images/standard news.png',
+    link: 'https://standard-news-next-rugk.vercel.app/category/04',
+    github: 'https://github.com/noorispeace1/standard-news-next',
+    large: false,
+    category: 'frontend'
+  },
+  {
+    title: 'Aurelia Summer',
+    desc: 'A vibrant and modern frontend website featuring smooth animations, a responsive grid layout, and an engaging user interface.',
+    tags: ['React', 'Tailwind CSS'],
+    img: '/images/aura-summer.png',
+    link: 'https://aurelia-summer.vercel.app/',
+    github: 'https://github.com/noorispeace1/Aurelia-Summer',
+    large: false,
+    category: 'frontend'
   }
 ];
 
 const Projects = () => {
   const containerRef = useRef(null);
+  const [filter, setFilter] = useState('all');
+
+  const filteredProjects = filter === 'all' 
+    ? projects 
+    : projects.filter(p => p.category === filter);
+
+  const counts = {
+    all: projects.length,
+    frontend: projects.filter(p => p.category === 'frontend').length,
+    backend: projects.filter(p => p.category === 'backend').length,
+    fullstack: projects.filter(p => p.category === 'fullstack').length,
+  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -49,19 +117,17 @@ const Projects = () => {
         gsap.fromTo(card, 
           { 
             opacity: 0, 
-            y: 100, 
-            scale: 0.9, 
-            rotationX: 15,
-            filter: "blur(10px)"
+            y: 50, 
+            scale: 0.95, 
+            filter: "blur(5px)"
           },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            rotationX: 0,
             filter: "blur(0px)",
-            duration: 1.2,
-            ease: "expo.out",
+            duration: 0.8,
+            ease: "back.out(1.2)",
             scrollTrigger: {
               trigger: card,
               start: "top 85%",
@@ -89,78 +155,107 @@ const Projects = () => {
     }, containerRef);
     
     return () => ctx.revert();
-  }, []);
+  }, [filter]);
 
   return (
     <section id="projects" className="pt-32" ref={containerRef}>
-      <div className="projects-header">
+      <div className="projects-header flex flex-col items-center">
         <SectionHeader
           subtitle="Selected Works"
           title="Featured Projects"
         />
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8 mb-12">
+          {['all', 'frontend', 'backend', 'fullstack'].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`flex items-center gap-2 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 border ${
+                filter === cat 
+                  ? 'bg-primary text-white border-primary shadow-[0_0_20px_rgba(var(--primary-rgb),0.5)] scale-105' 
+                  : 'bg-surface/50 backdrop-blur-md text-on-surface hover:bg-primary/10 hover:border-primary/40 border-on-surface/10 hover:scale-105'
+              }`}
+            >
+              <span>{cat}</span>
+              <span className={`flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-black transition-colors ${
+                filter === cat 
+                  ? 'bg-white text-primary shadow-inner' 
+                  : 'bg-on-surface/10 text-on-surface-variant'
+              }`}>
+                {counts[cat]}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 px-4 md:px-8 perspective-[1000px]">
-        {projects.map((project, index) => (
+        {filteredProjects.map((project, index) => (
           <div
-            key={index}
-            className={`gsap-project-card ${project.large ? 'lg:col-span-2' : ''} group relative overflow-hidden rounded-[2.5rem] h-[480px] cursor-pointer bg-on-surface/[0.03] backdrop-blur-[40px] border border-on-surface/10 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(var(--primary-rgb),0.4)] transition-all duration-700 shadow-2xl`}
-            style={{ transformStyle: 'preserve-3d' }}
+            key={`${project.title}-${index}`}
+            className="gsap-project-card group relative flex flex-col overflow-hidden rounded-[2rem] bg-on-surface/[0.03] backdrop-blur-[40px] border border-on-surface/10 hover:border-primary/40 transition-all duration-500 shadow-xl hover:shadow-[0_10px_40px_rgba(var(--primary-rgb),0.15)] hover:-translate-y-2"
           >
-            {/* Project Image */}
-            <div className="absolute inset-0">
+            {/* Project Image - Top Section */}
+            <div className="relative h-64 sm:h-72 w-full overflow-hidden">
               <Image
                 src={project.img}
                 alt={project.title}
                 fill
-                className="object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-110 transition-all duration-1000 ease-out"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent group-hover:from-background/90 group-hover:via-background/70 transition-all duration-700"></div>
+              {/* Optional overlay just to darken image slightly if needed, but text is below now */}
+              <div className="absolute inset-0 bg-background/10 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
 
-            {/* Content */}
-            <div className="absolute inset-0 p-8 sm:p-10 flex flex-col justify-end transform group-hover:translate-y-[-10px] transition-transform duration-500">
-              <div className="flex flex-wrap gap-2 mb-6">
+            {/* Content - Bottom Section */}
+            <div className="p-6 sm:p-8 flex flex-col flex-1 relative z-10 bg-gradient-to-b from-transparent to-background/50">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {project.tags.map(tag => (
-                  <span key={tag} className="px-4 py-1.5 rounded-full bg-on-surface/10 border border-on-surface/20 text-[10px] uppercase tracking-widest font-bold text-primary backdrop-blur-md shadow-lg shadow-black/20">
+                  <span key={tag} className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] uppercase tracking-widest font-bold text-primary shadow-sm">
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <h3 className={`${project.large ? 'text-4xl lg:text-5xl' : 'text-3xl'} font-display font-bold text-on-surface mb-3 leading-tight drop-shadow-md`}>
+              <h3 className="text-2xl sm:text-3xl font-display font-bold text-on-surface mb-3 tracking-tight group-hover:text-primary transition-colors">
                 {project.title}
               </h3>
 
-              <p className="text-on-surface-variant text-sm sm:text-base max-w-lg mb-8 opacity-80 group-hover:opacity-100 transition-opacity duration-500 line-clamp-3 md:line-clamp-none drop-shadow-md">
+              <p className="text-on-surface-variant text-sm sm:text-base mb-8 flex-1 leading-relaxed">
                 {project.desc}
               </p>
 
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-auto">
-                <Link target='_blank' href={project.github} className="btn btn-primary bg-primary hover:bg-primary-container text-white border-none shadow-[0_0_15px_rgba(var(--primary-rgb),0.4)] btn-sm sm:btn-md rounded-xl px-4 sm:px-6 font-bold tracking-wide gap-2 flex items-center">
-                  <FaGithub size={18} />
-                  GitHub
+              <div className="flex flex-wrap items-center gap-3 mt-auto">
+                <Link target='_blank' href={project.github} className="btn btn-primary bg-primary/10 hover:bg-primary hover:text-white text-primary border border-primary/30 btn-sm rounded-xl px-4 font-bold tracking-wide gap-2 flex items-center transition-all">
+                  <FaGithub size={16} />
+                  {project.serverGithub ? 'Client' : 'GitHub'}
                 </Link>
-                <Link target='_blank' href={project.link} className="btn btn-outline border-white/20 text-white hover:text-primary hover:bg-white/10 hover:border-primary btn-sm sm:btn-md rounded-xl px-4 sm:px-6 font-bold tracking-wide gap-2 flex items-center backdrop-blur-md transition-all">
-                  <span className="material-symbols-outlined text-[18px]">open_in_new</span>
+                {project.serverGithub && (
+                  <Link target='_blank' href={project.serverGithub} className="btn btn-primary bg-primary/10 hover:bg-primary hover:text-white text-primary border border-primary/30 btn-sm rounded-xl px-4 font-bold tracking-wide gap-2 flex items-center transition-all">
+                    <FaGithub size={16} />
+                    Server
+                  </Link>
+                )}
+                <Link target='_blank' href={project.link} className="btn btn-outline border-on-surface/20 text-on-surface hover:text-primary hover:bg-primary/10 hover:border-primary/50 btn-sm rounded-xl px-4 font-bold tracking-wide gap-2 flex items-center transition-all">
+                  <span className="material-symbols-outlined text-[16px]">open_in_new</span>
                   Live
                 </Link>
 
-                {/* Social Links per project as requested */}
-                <div className="flex items-center gap-2 ml-auto">
-                  <Link target='_blank' href="https://www.youtube.com/@AhosanulHaqueNoor-j5i" className="btn btn-ghost btn-circle btn-sm sm:btn-md bg-white/5 hover:bg-red-500/20 text-white/70 hover:text-red-500 transition-all border border-white/10 backdrop-blur-sm" title="Watch on YouTube">
-                    <FaYoutube size={16} />
+                {/* Social Links */}
+                <div className="flex items-center gap-1 ml-auto">
+                  <Link target='_blank' href="https://www.youtube.com/@AhosanulHaqueNoor-j5i" className="p-2 rounded-full hover:bg-red-500/20 text-on-surface-variant hover:text-red-500 transition-all" title="Watch on YouTube">
+                    <FaYoutube size={18} />
                   </Link>
-                  <Link target='_blank' href="https://www.linkedin.com/in/ahosanul-haque-noor-b4a02b2a5" className="btn btn-ghost btn-circle btn-sm sm:btn-md bg-white/5 hover:bg-blue-500/20 text-white/70 hover:text-blue-500 transition-all border border-white/10 backdrop-blur-sm" title="Discuss on LinkedIn">
-                    <FaLinkedin size={16} />
+                  <Link target='_blank' href="https://www.linkedin.com/in/ahosanul-haque-noor-b4a02b2a5" className="p-2 rounded-full hover:bg-blue-500/20 text-on-surface-variant hover:text-blue-500 transition-all" title="Discuss on LinkedIn">
+                    <FaLinkedin size={18} />
                   </Link>
                 </div>
               </div>
             </div>
-
+            
             {/* Decorative Corner Icon */}
-            <div className="absolute top-8 right-8 w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:rotate-12 transition-all duration-500 shadow-xl">
+            <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-xl">
               <span className="material-symbols-outlined text-white">arrow_outward</span>
             </div>
           </div>

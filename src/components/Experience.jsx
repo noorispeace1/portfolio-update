@@ -36,9 +36,14 @@ const Experience = () => {
                     <tbody className="divide-y divide-on-surface/5">
                         {[
                             {
+                                role: 'Web Developer Intern',
+                                company: 'GAO TEK Inc. (USA)',
+                                period: '2026 — Present'
+                            },
+                            {
                                 role: 'Web Development Student',
                                 company: 'Programming Hero',
-                                period: '2024 — Present'
+                                period: '2024 — 2025'
                             },
                             {
                                 role: 'Full Stack Practice Developer',

@@ -87,11 +87,17 @@ const Qualification = () => {
             </span>
 
             <h2 className="text-xl sm:text-2xl font-semibold text-on-surface font-display">
-              Experience
+              Experience & Awards
             </h2>
           </motion.div>
 
           {[
+            {
+              year: "2024",
+              title: "Master Minds Category Participant",
+              company: "International Leadership Competition 1.0",
+              pdfLink: "/qualifications/Ahosanul-Haque-Noor-9-697E0E24C7EC0-2026-01-31-20-13-56.pdf"
+            },
             {
               year: "2025 - Present",
               title: "Junior Web Developer (Learning & Practice)",
@@ -121,8 +127,21 @@ const Qualification = () => {
                 </h3>
 
                 <p className="text-on-surface-variant text-xs sm:text-sm">
-                  {item.company}
+                  {item.company || item.institution}
                 </p>
+
+                {item.pdfLink && (
+                  <a 
+                    href={item.pdfLink} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 mt-4 text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full transition-all border border-primary/20 hover:border-primary/40 shadow-sm hover:shadow-[0_0_15px_rgba(var(--primary-rgb),0.3)] w-fit"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <span className="material-symbols-outlined text-base">picture_as_pdf</span>
+                    View Certificate
+                  </a>
+                )}
               </GlassCard>
 
               {/* Dot */}
