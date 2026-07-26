@@ -1,84 +1,121 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { FaGithub, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+
+const textArray = ["A Full Stack Web Developer", "A Creative Problem Solver", "A UI/UX Enthusiast"];
+
+const HackerText = ({ text, className }) => {
+  const [displayText, setDisplayText] = useState(text.replace(/[a-zA-Z]/g, '-'));
+  
+  useEffect(() => {
+    const chars = "!<>-_\\\\/[]{}—=+*^?#________";
+    let iteration = 0;
+    let interval = null;
+    
+    const startAnimation = () => {
+      clearInterval(interval);
+      interval = setInterval(() => {
+        setDisplayText((prev) => 
+          text
+            .split("")
+            .map((letter, index) => {
+              if (index < iteration) {
+                return text[index];
+              }
+              if (letter === " " || letter === "." || letter === ",") return letter;
+              return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join("")
+        );
+        
+        if (iteration >= text.length) {
+          clearInterval(interval);
+        }
+        
+        iteration += text.length / 40; 
+      }, 35);
+    };
+
+    const timeout = setTimeout(startAnimation, 800); 
+
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
+  }, [text]);
+
+  return <p className={className}>{displayText}</p>;
+};
 
 const Hero = () => {
   const polygonRef = useRef(null);
   const imageRef = useRef(null);
   const badgeRef = useRef(null);
-
-  const splitText = (text, className) => {
-    return text.split(' ').map((word, wordIndex) => (
-      <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.3em]">
-        {word.split('').map((char, charIndex) => (
-          <span key={charIndex} className={`opacity-0 ${className} inline-block`}>
-            {char}
-          </span>
-        ))}
-      </span>
-    ));
-  };
+  
+  const [subtitleText, setSubtitleText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
 
   useEffect(() => {
-    // 3D Flip up animation for title
-    gsap.fromTo('.title-char', 
-      { opacity: 0, y: 30, rotateX: -90 },
-      {
-        opacity: 1,
-        y: 0,
-        rotateX: 0,
-        stagger: 0.05,
-        duration: 0.6,
-        ease: "back.out(1.5)",
-        delay: 0.5
+    const typingSpeed = 100;
+    let ticker = setInterval(() => {
+      const i = loopNum % textArray.length;
+      const fullText = textArray[i];
+
+      setSubtitleText(isDeleting 
+        ? fullText.substring(0, subtitleText.length - 1)
+        : fullText.substring(0, subtitleText.length + 1)
+      );
+
+      if (!isDeleting && subtitleText === fullText) {
+        clearInterval(ticker);
+        setTimeout(() => setIsDeleting(true), 2000);
+      } else if (isDeleting && subtitleText === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
       }
-    );
+    }, isDeleting ? typingSpeed / 2 : typingSpeed);
 
-    // Slide and fade in for subtitle
-    gsap.fromTo('.subtitle-char', 
-      { opacity: 0, x: -15, filter: "blur(4px)" },
-      {
-        opacity: 1,
-        x: 0,
-        filter: "blur(0px)",
-        stagger: 0.03,
-        duration: 0.4,
-        ease: "power2.out",
-        delay: 1.5 
-      }
-    );
+    return () => clearInterval(ticker);
+  }, [subtitleText, isDeleting, loopNum]);
 
-    // Polygon pulsing animation
-    gsap.to(polygonRef.current, {
-      opacity: 0.8,
-      scale: 1.05,
-      rotation: 5,
-      duration: 4,
-      yoyo: true,
-      repeat: -1,
-      ease: "sine.inOut"
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      // Polygon pulsing animation
+      gsap.to(polygonRef.current, {
+        opacity: 0.8,
+        scale: 1.05,
+        rotation: 5,
+        duration: 4,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut"
+      });
+
+      // Image float animation
+      gsap.to(imageRef.current, {
+        y: -15,
+        duration: 3,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut"
+      });
+
+      // System online badge pulse
+      gsap.to(badgeRef.current, {
+        boxShadow: "0px 0px 20px rgba(77, 31, 133, 0.8)",
+        duration: 1.5,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut"
+      });
     });
 
-    // Image float animation
-    gsap.to(imageRef.current, {
-      y: -15,
-      duration: 3,
-      yoyo: true,
-      repeat: -1,
-      ease: "sine.inOut"
-    });
-
-    // System online badge pulse
-    gsap.to(badgeRef.current, {
-      boxShadow: "0px 0px 20px rgba(77, 31, 133, 0.8)",
-      duration: 1.5,
-      yoyo: true,
-      repeat: -1,
-      ease: "sine.inOut"
-    });
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -108,18 +145,46 @@ const Hero = () => {
         
         {/* Left Content */}
         <div className="space-y-8 z-10 pl-0 lg:pl-16 mt-12 md:mt-0">
-          <div className="space-y-6">
-            <h1 className="font-dot text-4xl sm:text-5xl md:text-6xl text-[#d4bfff] font-bold tracking-widest drop-shadow-[0_0_10px_rgba(212,191,255,0.8)]">
-               {splitText("Hi, I'm Noor", "title-char")}
-            </h1>
-            <h2 className="font-dot text-xl sm:text-2xl md:text-3xl text-[#a370f7] font-bold tracking-[0.1em] drop-shadow-[0_0_8px_rgba(163,112,247,0.6)]">
-               {splitText("A Full Stack Web Developer", "subtitle-char")}
+          <div className="space-y-4 sm:space-y-6">
+            <motion.h1 
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 1 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.08, delayChildren: 0.2 }
+                }
+              }}
+              className="font-dot text-4xl sm:text-5xl md:text-6xl text-[#d4bfff] font-bold tracking-widest drop-shadow-[0_0_10px_rgba(212,191,255,0.8)]"
+            >
+              {"Hi, I'm Noor".split('').map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={{
+                    hidden: { opacity: 0, y: 30, rotateX: -90 },
+                    visible: { opacity: 1, y: 0, rotateX: 0, transition: { type: "spring", damping: 12, stiffness: 200 } }
+                  }}
+                  className="inline-block whitespace-pre"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.h1>
+            <h2 className="font-dot text-xl sm:text-2xl md:text-3xl text-[#a370f7] font-bold tracking-[0.1em] drop-shadow-[0_0_8px_rgba(163,112,247,0.6)] min-h-[32px] sm:min-h-[40px] md:min-h-[48px] flex items-center">
+               <span>{subtitleText}</span>
+               <motion.span
+                 animate={{ opacity: [0, 1, 0] }}
+                 transition={{ repeat: Infinity, duration: 0.8 }}
+                 className="inline-block w-[2px] sm:w-[3px] h-[1em] bg-[#a370f7] ml-1 sm:ml-2"
+               />
             </h2>
           </div>
           
-          <p className="text-on-surface-variant max-w-md leading-relaxed text-sm sm:text-base font-medium">
-                           I'm currently working as a full stack web developer, sharing my passion for development while continually expanding my own skillset. I build modern, responsive web apps using React, Next.js, and Node.js to deliver seamless user experiences.
-          </p>
+          <HackerText 
+            text="I'm currently working as a full stack web developer, sharing my passion for development while continually expanding my own skillset. I build modern, responsive web apps using React, Next.js, and Node.js to deliver seamless user experiences."
+            className="text-on-surface-variant max-w-md leading-relaxed text-sm sm:text-base font-medium min-h-[100px]"
+          />
 
           <div className="pt-4">
             <Link href="#contact" className="inline-flex items-center gap-3 px-6 py-3 border border-[#4d1f85] bg-[#1a0b33]/60 hover:bg-[#4d1f85]/60 text-[#d4bfff] rounded-lg transition-all duration-300 backdrop-blur-md text-xs sm:text-sm tracking-[0.15em] font-bold shadow-[0_0_20px_rgba(77,31,133,0.4)] group">
