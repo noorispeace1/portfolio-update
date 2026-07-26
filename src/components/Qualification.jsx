@@ -40,7 +40,7 @@ const Qualification = () => {
 
           {[
             { year: '2021 - 2023', title: 'Higher School Certificate (HSC)', institution: 'Govt M.U College.Kaliganj,Jhenaidah' },
-            { year: '2023 - 2024', title: 'University Certificate (BSC)', institution: 'Green University Of Bangladesh' }
+            { year: '2023 - 2024', title: 'University Certificate (BSS)', institution: 'Green University Of Bangladesh' }
           ].map((item, idx) => (
             <div key={idx} className="relative flex md:justify-end">
 
